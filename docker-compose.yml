@@ -1,0 +1,37 @@
+# Cinco servidores Ubuntu de laboratorio, accesibles solo desde el host.
+# Todos comparten la imagen definida en el Dockerfile.
+x-ubuntu-ssh: &ubuntu-ssh
+  build: .
+  image: practica-ansible-ubuntu:local
+  restart: unless-stopped
+
+services:
+  servidor1:
+    <<: *ubuntu-ssh
+    container_name: servidor1
+    ports:
+      - "127.0.0.1:2221:22"
+
+  servidor2:
+    <<: *ubuntu-ssh
+    container_name: servidor2
+    ports:
+      - "127.0.0.1:2232:22"
+
+  servidor3:
+    <<: *ubuntu-ssh
+    container_name: servidor3
+    ports:
+      - "127.0.0.1:2223:22"
+
+  servidor4:
+    <<: *ubuntu-ssh
+    container_name: servidor4
+    ports:
+      - "127.0.0.1:2224:22"
+
+  servidor5:
+    <<: *ubuntu-ssh
+    container_name: servidor5
+    ports:
+      - "127.0.0.1:2225:22"
